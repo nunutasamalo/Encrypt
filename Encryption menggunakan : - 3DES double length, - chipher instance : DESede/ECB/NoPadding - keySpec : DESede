@@ -1,0 +1,23 @@
+
+
+  function encryptData($key,$raw_data){
+    $bin_key = hex2bin($key);        
+    $data = strtoupper($raw_data);
+    $bin_data = hex2bin($data);
+    $ciphertext = openssl_encrypt($bin_data, 'des-ede', $bin_key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+    $result = strtoupper(bin2hex($ciphertext));
+    return $result;
+}
+
+
+
+function decryptData($key,$raw_data){
+    $bin_key = hex2bin($key);        
+    $data = strtoupper($raw_data);
+    $bin_data= hex2bin($data);
+    $ciphertext = openssl_decrypt($bin_data, 'des-ede', $bin_key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+    $result= strtoupper(bin2hex($ciphertext));
+
+    return $result;
+
+}
